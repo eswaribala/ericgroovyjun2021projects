@@ -34,8 +34,10 @@ countryList.each{println it}
 
 //key pair value
 //dynamic map
-travelList=[['name':'traveller1','country':'USA'],['name':'traveller2','country':'UK']]
+//list has map
+travelList=[['name':'traveller1'],['name':'traveller2','country':'UK']]
 println "$travelList"
+travelList[0].putAll(['country':'USA'])
 travelList[0].put('duration', 10)
 travelList[1].put('duration', 20)
 //println "$travelList[0]"
@@ -47,5 +49,18 @@ entries.forEach { entry ->
 }
 
 }
+
+//alternative approach
+//map has list
+travelList=['names':['t1','t2'],'countries':['c1','c2'],'durations':[10,20]]
+
+
+	entries=travelList.entrySet();
+	entries.forEach { entry ->
+		println "$entry.key,$entry.value"
+		
+	}
+	
+	
 
 
