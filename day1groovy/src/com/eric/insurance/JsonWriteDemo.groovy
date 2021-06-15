@@ -9,7 +9,7 @@ cities=[['CityName':'New York','CountryName':'USA'],
 	
 	cityJson=JsonOutput.toJson(cities)
 	prettyData=JsonOutput.prettyPrint(cityJson)
-    File file=new File('d:/backup/cities.txt')
+    File file=new File('cities.txt')
 	file.write(prettyData)
 	
 	println "Data Written..."

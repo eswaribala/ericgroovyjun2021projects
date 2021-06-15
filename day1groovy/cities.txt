@@ -1,0 +1,10 @@
+[
+    {
+        "CityName": "New York",
+        "CountryName": "USA"
+    },
+    {
+        "CityName": "New Delhi",
+        "CountryName": "India"
+    }
+]
