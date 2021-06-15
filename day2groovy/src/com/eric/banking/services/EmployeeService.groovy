@@ -13,13 +13,41 @@ class EmployeeService {
 	EmployeeService()
 	{
 	  properties=new Properties();
-	  propertyFile=new File("./src/com/eric/banking/resources/db.properties")
+	  propertyFile=new File(DBHelper.getPropertyFileName())
 	}
 	def boolean saveEmployee(Employee employee) {	
 		conn=new DBHelper().getConnection()
+		boolean status=false;
+		/*
 		propertyFile.withInputStream { properties.load(it) }
-	    
-	  return false	
+		List<Object> params= new ArrayList()
+		params.add(employee.empNo)
+		params.add(employee.empName)
+		params.add(employee.salary)
+		params.add(employee.deptNo)
+	    conn.executePreparedQuery(properties.saveEmployee, params){
+			resultSet->println(resultSet)
+		}
+		*/
+		
+		conn.connection.autoCommit=false
+		def sqlstr = """INSERT INTO emp(EMPNO,EMPNAME,SALARY,DEPTNO) 
+               VALUES (123355,'Param',34659734,34)"""
+		try 
+		{
+			 conn.execute(sqlstr); 
+			 conn.commit()
+			 status=true
+			  println("Successfully committed")
+			   } 
+		catch(Exception ex) 
+		{ 
+			conn.rollback() 
+			println("Transaction rollback")
+			 }
+		conn.close()
+		
+	  return status	
 	}
 	
 	def List<Employee> getAllEmployees() {

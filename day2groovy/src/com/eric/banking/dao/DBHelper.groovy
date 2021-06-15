@@ -5,7 +5,7 @@ class DBHelper {
 	def Sql getConnection() {
 		
 		Properties properties=new Properties();
-		File propertyFile=new File("./src/com/eric/banking/resources/db.properties")
+		File propertyFile=new File(getPropertyFileName())
 		propertyFile.withInputStream { properties.load(it) }
 		
 	    println properties.url
@@ -14,6 +14,10 @@ class DBHelper {
 			properties.driverClassName)	
 	   return sql
 	
+	}
+	
+	def static String getPropertyFileName() {
+		return "./src/com/eric/banking/resources/db.properties"
 	}
 }
 
