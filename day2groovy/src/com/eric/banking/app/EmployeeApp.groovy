@@ -1,6 +1,7 @@
 package com.eric.banking.app
 
 import com.eric.banking.dao.DBHelper
+import com.eric.banking.models.Employee
 import com.eric.banking.services.EmployeeService
 import groovy.beans.PropertyReader
 
@@ -17,7 +18,9 @@ class EmployeeApp {
 			
 	   	*/
 		
-		new EmployeeService().getAllEmployees();
+	for(Employee employee :new EmployeeService().getAllEmployees()) {
 		
+		println employee
+	  }
 	}
 }
