@@ -20,21 +20,14 @@ class EmployeeService {
 		boolean status=false;
 		
 		propertyFile.withInputStream { properties.load(it) }
-		List<Object> params= new ArrayList()
-		params.add(employee.empNo)
-		params.add(employee.empName)
-		params.add(employee.salary)
-		params.add(employee.deptNo)
-		//params.reverse()
-		println params
+		def params=[employee.getEmpNo(),
+			   employee.getEmpName(),employee.getSalary(),employee.getDeptNo()]
+		println properties.saveEmployee
 		conn.connection.autoCommit=false
 		try {
 					
-	       conn.execute(properties.saveEmployee, params) {
-			   resultSet->
-			    println(resultSet)
-				status=true;
-		   }
+	       conn.executeInsert properties.saveEmployee, params
+		   status=true
 		   conn.commit()
 		}
 		catch(Exception ex)

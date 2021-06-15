@@ -33,10 +33,10 @@ class EmployeeApp {
 	
 	def Employee assignEmployeeData() {
 		Employee employee=new Employee();
-		employee.setEmpNo(1+new Random().nextInt(100))
+		employee.setEmpNo(1+new Random().nextInt(10000))
 		employee.setEmpName("Employee"+new Random().nextInt(100))
-		employee.setSalary(8000)
-		employee.setDeptNo(50)
+		employee.setSalary(8000+new Random().nextInt(100))
+		employee.setDeptNo(50+new Random().nextInt(100))
 		return employee
 	}
 }
