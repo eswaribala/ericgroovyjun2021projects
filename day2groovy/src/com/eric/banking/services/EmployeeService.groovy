@@ -2,9 +2,10 @@ package com.eric.banking.services
 
 import com.eric.banking.dao.DBHelper
 import com.eric.banking.models.Employee
+import groovy.sql.Sql
 
 class EmployeeService {
-	Object conn;	
+	Sql conn;	
 	File propertyFile
 	Properties properties
 	Employee employee
@@ -14,7 +15,10 @@ class EmployeeService {
 	  properties=new Properties();
 	  propertyFile=new File("./src/com/eric/banking/resources/db.properties")
 	}
-	def boolean saveEmployee(Employee employee) {		
+	def boolean saveEmployee(Employee employee) {	
+		conn=new DBHelper().getConnection()
+		propertyFile.withInputStream { properties.load(it) }
+	    
 	  return false	
 	}
 	
@@ -34,6 +38,7 @@ class EmployeeService {
 			 
 			}
 		  }
+		  
 		  return employeeList;
 	}
 	

@@ -2,7 +2,7 @@ package com.eric.banking.dao
 import groovy.sql.Sql
 class DBHelper {
 
-	def Object getConnection() {
+	def Sql getConnection() {
 		
 		Properties properties=new Properties();
 		File propertyFile=new File("./src/com/eric/banking/resources/db.properties")
