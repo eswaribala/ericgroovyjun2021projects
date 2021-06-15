@@ -8,6 +8,7 @@
 	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jsonlib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/groovysql"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/oraclelib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
