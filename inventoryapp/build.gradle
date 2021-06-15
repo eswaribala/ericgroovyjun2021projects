@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.12.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'groovy'
+}
+
+group = 'com.eric'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.codehaus.groovy:groovy'
+	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'com.oracle:ojdbc6:11.2.0.4.0'
+	//implementation "org.grails.plugins:hibernate5:6.0.13"
+	//implemenation "org.hibernate:hibernate-ehcache"
+   // https://mvnrepository.com/artifact/org.grails/gorm-hibernate5-spring-boot
+//implementation group: 'org.grails', name: 'gorm-hibernate5-spring-boot', version: '7.0.0.RELEASE'
+ 
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.5.1'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
