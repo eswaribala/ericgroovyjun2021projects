@@ -18,34 +18,31 @@ class EmployeeService {
 	def boolean saveEmployee(Employee employee) {	
 		conn=new DBHelper().getConnection()
 		boolean status=false;
-		/*
+		
 		propertyFile.withInputStream { properties.load(it) }
 		List<Object> params= new ArrayList()
 		params.add(employee.empNo)
 		params.add(employee.empName)
 		params.add(employee.salary)
 		params.add(employee.deptNo)
-	    conn.executePreparedQuery(properties.saveEmployee, params){
-			resultSet->println(resultSet)
-		}
-		*/
-		
+		//params.reverse()
+		println params
 		conn.connection.autoCommit=false
-		def sqlstr = """INSERT INTO emp(EMPNO,EMPNAME,SALARY,DEPTNO) 
-               VALUES (123355,'Param',34659734,34)"""
-		try 
+		try {
+					
+	       conn.execute(properties.saveEmployee, params) {
+			   resultSet->
+			    println(resultSet)
+				status=true;
+		   }
+		   conn.commit()
+		}
+		catch(Exception ex)
 		{
-			 conn.execute(sqlstr); 
-			 conn.commit()
-			 status=true
-			  println("Successfully committed")
-			   } 
-		catch(Exception ex) 
-		{ 
-			conn.rollback() 
+			conn.rollback()
 			println("Transaction rollback")
-			 }
-		conn.close()
+		}		
+		
 		
 	  return status	
 	}
