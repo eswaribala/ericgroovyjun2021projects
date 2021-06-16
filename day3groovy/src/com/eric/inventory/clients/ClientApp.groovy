@@ -1,15 +1,27 @@
 package com.eric.inventory.clients
-import groovyx.net.http.RESTClient
-import static groovyx.net.http.ContentType.*
+//GET method1
+println new URL( "http://localhost:7070/products").text
+//GET method2
+def connection = new URL( "http://localhost:7070/products")
+	.openConnection() as HttpURLConnection
 
+// set some headers
+connection.setRequestProperty( 'User-Agent', 'groovy-2.4.4' )
+connection.setRequestProperty( 'Accept', 'application/json' )
 
-try {
-	def restClient = new RESTClient("https://jsonplaceholder.typicode.com")
-	//def response = restClient.get(path: '/users', query: ['id': 1])
-	def response = restClient.get(path: '/users')
-	println "Status     : ${response.status}"
-	response.data.each { t-> println t }
-} catch (Exception e) {
-	println "Error      : ${e.statusCode}"
-	println "Message    : ${e.response.data}"
+// get the response code - automatically sends the request
+println connection.responseCode + ": " + connection.inputStream.text
+
+//POST method
+
+def post = new URL("http://localhost:7070/products").openConnection();
+def message = '{"productName":"test","dop":"2021-09-08"}'
+post.setRequestMethod("POST")
+post.setDoOutput(true)
+post.setRequestProperty("Content-Type", "application/json")
+post.getOutputStream().write(message.getBytes("UTF-8"));
+def postRC = post.getResponseCode();
+println(postRC);
+if (postRC.equals(200)) {
+	println(post.getInputStream().getText())
 }
