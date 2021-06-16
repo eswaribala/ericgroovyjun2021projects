@@ -1,8 +1,24 @@
 package com.eric.inventory.clients
+
+import groovy.json.JsonSlurper
+
 //GET method1
-println new URL( "http://localhost:7070/products").text
+def userResponse=new URL( "https://jsonplaceholder.typicode.com/users").text
+//user name
+users=new JsonSlurper().parseText(userResponse)
+
+// println "$users.username"
+
+users.each { t->
+	entries=t.entrySet()
+	entries.forEach{ entry->
+     if(entry.key.equals("username")) 		
+	   println entry.value
+	}
+}
+/*
 //GET method2
-def connection = new URL( "http://localhost:7070/products")
+def connection = new URL( "https://jsonplaceholder.typicode.com/photos")
 	.openConnection() as HttpURLConnection
 
 // set some headers
@@ -11,11 +27,13 @@ connection.setRequestProperty( 'Accept', 'application/json' )
 
 // get the response code - automatically sends the request
 println connection.responseCode + ": " + connection.inputStream.text
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 
 //POST method
 
-def post = new URL("http://localhost:7070/products").openConnection();
-def message = '{"productName":"test","dop":"2021-09-08"}'
+def post = new URL("https://jsonplaceholder.typicode.com/photos").openConnection();
+def message = JsonOutput.toJson(title: 'Groovy Training', body: 'Rest Client', userId: 10000)
 post.setRequestMethod("POST")
 post.setDoOutput(true)
 post.setRequestProperty("Content-Type", "application/json")
@@ -29,7 +47,8 @@ println(postRC);
  * 400+ authentication or page not found, incorrect json data
  * 500 internal server error logical error 
  */
-
-if (postRC.equals(200)) {
+/*
+if ((postRC>200) && (postRC<299)) {
 	println(post.getInputStream().getText())
 }
+*/

@@ -33,16 +33,17 @@ class ProductSwaggerConfiguration {
 	@Bean
 	public Docket api10Docket() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.groupName("products-api-1.0")
+			
 				.select()
 				.apis(RequestHandlerSelectors
 						.basePackage("com.eric.inventoryapp"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(getApiInfo())
-				.forCodeGeneration(true)
+				 .forCodeGeneration(true)
 				.genericModelSubstitutes(ResponseEntity.class)
 				.ignoredParameterTypes(Pageable.class)
+				//.ignoredParameterTypes(groovy.lang.metaclass.class)
 				.ignoredParameterTypes(java.sql.Date.class)
 				.directModelSubstitute(java.time.LocalDate.class, java.sql.Date.class)
 				.directModelSubstitute(java.time.ZonedDateTime.class, Date.class)
