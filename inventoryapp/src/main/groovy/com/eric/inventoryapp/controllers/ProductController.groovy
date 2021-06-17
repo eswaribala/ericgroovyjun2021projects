@@ -4,6 +4,7 @@ import com.eric.inventoryapp.models.Product
 import com.eric.inventoryapp.services.ProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,6 +27,13 @@ class ProductController {
 		return productService.getAllProducts()
 	}
 	
+	@GetMapping("/products/publish/{productId}")
+	String publishAllProducts(@PathVariable("productId") long productId){
+		if(productService.publishInventoryData(productId))
+			return "Data published"
+		else
+			return "Error in publishing....."
+	}
 	
 	
 }

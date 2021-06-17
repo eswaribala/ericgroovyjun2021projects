@@ -12,7 +12,9 @@ repositories {
 	mavenCentral()
 	mavenLocal()
 }
-
+ext {
+	set('springCloudVersion', "Hoxton.SR6")
+}
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -38,11 +40,15 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-data-rest', version: '2.10.5'
 // https://mvnrepository.com/artifact/org.apache.commons/commons-pool2
 	implementation group: 'org.apache.commons', name: 'commons-pool2', version: '2.9.0'
-	
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-kafka', version: '2.2.3.RELEASE'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
 test {
 	useJUnitPlatform()
 }
